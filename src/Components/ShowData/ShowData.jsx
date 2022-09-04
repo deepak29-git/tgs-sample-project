@@ -2,7 +2,14 @@ import { useState } from 'react';
 import { useData } from '../../Context/data-context';
 import { Modal } from '../Modal/Modal';
 import { getFilter } from '../../Utility/filter';
-import {Table,TableBody,TableCell,TableHead,TableRow} from '@mui/material';
+import '../ShowData/ShowData.css'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+} from '@mui/material';
 
 export const ShowData = () => {
   const { data, loading, error, check } = useData();
@@ -12,19 +19,19 @@ export const ShowData = () => {
     setShow(!show);
   };
 
-  const tableHeadStyles={
-    "& .MuiTableCell-head":{
-      fontWeight:"bold",
-      color:"white",
-      backgroundColor:"black"
-    }
-  }
+  const tableHeadStyles = {
+    '& .MuiTableCell-head': {
+      fontWeight: 'bold',
+      color: 'white',
+      backgroundColor: 'black',
+    },
+  };
   const finalData = getFilter(data, check);
 
   return (
     <div data-testid="showdata">
-      {loading && <h3>Loading...</h3>}
-      {error && <h3>{error}</h3>}
+      {loading && <div className='center-text'><h3>Loading...</h3></div>}
+      {error && <div className='center-text'><h3>{error}</h3></div>}
       <Table border={1}>
         <TableHead sx={tableHeadStyles}>
           <TableRow>
