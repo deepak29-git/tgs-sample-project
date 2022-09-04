@@ -1,0 +1,15 @@
+.filter{
+  cursor: pointer;
+}
+.pagination{
+  display: flex;
+  gap: 10px;
+}
+.page-item{
+  list-style: none;
+}
+.page-link{
+  cursor: pointer;
+
+}
+
