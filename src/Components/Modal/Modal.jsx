@@ -4,7 +4,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
-import { useData } from '../../Context/data-context';
+import { useData } from '../../context/dataContext';
 
 export const Modal = () => {
   const { data, setCheck, check } = useData();
@@ -17,7 +17,7 @@ export const Modal = () => {
     maxWidth: 360,
     bgcolor: 'background.paper',
     position: 'absolute',
-    top: '57px',
+    top: '3.6rem',
     right: '0',
   };
 

@@ -1,6 +1,6 @@
-import { ShowData } from './Components/ShowData/ShowData';
+import { ShowData } from './components/showdata/showData';
 import { TablePagination } from '@mui/material';
-import { useData } from './Context/data-context';
+import { useData } from './context/dataContext';
 import './App.css';
 
 function App() {

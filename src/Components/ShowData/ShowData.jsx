@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { useData } from '../../Context/data-context';
-import { Modal } from '../Modal/Modal';
-import { getFilter } from '../../Utility/filter';
-import '../ShowData/ShowData.css'
+import { useData } from '../../context/dataContext';
+import { Modal } from '../modal/modal';
+import { getFilter } from '../../utility/filter';
 import {
   Table,
   TableBody,
@@ -10,14 +9,14 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
+import { tableHeaders } from '../../tableheaders/tableHeaders';
+import { TableData } from '../tabledata/tableData';
 
 export const ShowData = () => {
   const { data, loading, error, check } = useData();
   const [show, setShow] = useState(false);
 
-  const filterHandler = () => {
-    setShow(!show);
-  };
+  const finalData = getFilter(data, check);
 
   const tableHeadStyles = {
     '& .MuiTableCell-head': {
@@ -26,32 +25,33 @@ export const ShowData = () => {
       backgroundColor: 'black',
     },
   };
-  const finalData = getFilter(data, check);
 
   return (
     <div data-testid="showdata">
-      {loading && <div className='center-text'><h3>Loading...</h3></div>}
-      {error && <div className='center-text'><h3>{error}</h3></div>}
+      {loading && (
+        <div className="center-text">
+          <h3>Loading...</h3>
+        </div>
+      )}
+      {error && (
+        <div className="center-text">
+          <h3>{error}</h3>
+        </div>
+      )}
       <Table border={1}>
         <TableHead sx={tableHeadStyles}>
           <TableRow>
-            <TableCell>Id</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Full Name</TableCell>
-            <TableCell>License Name</TableCell>
-            <TableCell className="filter" onClick={filterHandler}>
-              filter
+            {tableHeaders.map(({ heading }, index) => (
+              <TableCell key={index}>{heading}</TableCell>
+            ))}
+            <TableCell className="filter" onClick={() => setShow(!show)}>
+              Filter
             </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {finalData.map(({ id, name, full_name, license }) => (
-            <TableRow key={id}>
-              <TableCell>{id}</TableCell>
-              <TableCell>{name}</TableCell>
-              <TableCell>{full_name}</TableCell>
-              <TableCell>{license?.name}</TableCell>
-            </TableRow>
+          {finalData.map((item) => (
+            <TableData key={item.id} item={item} />
           ))}
         </TableBody>
       </Table>

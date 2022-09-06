@@ -1,5 +1,5 @@
 import { render, screen, cleanup } from '@testing-library/react';
-import { Modal } from './Modal';
+import { Modal } from './modal.test';
 import '@testing-library/jest-dom';
 
 afterEach(() => {
